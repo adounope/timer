@@ -1,0 +1,20 @@
+#!/bin/bash
+t=$1
+until [[ "$t" =~ ^[0-9]+$ && ! "$t" =~ ^0+$ ]]; do
+	echo -en "input a positive integer: "
+	read t
+done
+n0=$(expr length $t)
+#echo -en "\r"
+while ((t > 0)); do
+	sleep 1
+	t=$((t-1))
+	n=$(expr length $t)
+	echo -en "\r"
+	for ((i=0; i<(n0-n); i++)); do
+		echo -en " "
+	done
+	echo -en "$t"
+done
+echo -e "\a"
+
